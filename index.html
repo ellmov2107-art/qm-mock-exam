@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Qualitative Methods Mock Exam</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Serif:wght@600;700&display=swap">
+<style>
+:root{--bg:#faf8f5;--card:#fff;--ink:#1f1d1a;--muted:#6b665e;--line:#e6e1d8;--accent:#e07a00;--accent-soft:#fff3e2;--ok:#1f7a4a;--ok-soft:#e7f5ec;--bad:#b3261e;--bad-soft:#fdecea}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#171614;--card:#211f1c;--ink:#ece8e1;--muted:#a39d93;--line:#38342e;--accent:#ff9a2e;--accent-soft:#3a2a14;--ok:#5cc58a;--ok-soft:#173225;--bad:#ff7a6e;--bad-soft:#3b1a17;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#171614;--card:#211f1c;--ink:#ece8e1;--muted:#a39d93;--line:#38342e;--accent:#ff9a2e;--accent-soft:#3a2a14;--ok:#5cc58a;--ok-soft:#173225;--bad:#ff7a6e;--bad-soft:#3b1a17;color-scheme:dark}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 "IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif}
+.wrap{max-width:820px;margin:0 auto;padding-block:24px 140px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+h1{font-family:"IBM Plex Serif",Georgia,serif;font-size:1.8rem;margin:0 0 4px;text-wrap:balance}
+h2{font-family:"IBM Plex Serif",Georgia,serif;font-size:1.25rem;margin:40px 0 4px;padding-bottom:6px;border-bottom:2px solid var(--accent)}
+.sub{color:var(--muted);margin:0 0 18px}
+.intro{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin-bottom:12px}
+.intro ul{margin:8px 0 0;padding-left:20px}
+.q{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin:14px 0}
+.qhead{display:flex;justify-content:space-between;gap:8px;align-items:baseline;margin-bottom:8px}
+.qnum{font-weight:700;color:var(--accent)}
+.tag{font-size:.75rem;color:var(--muted);border:1px solid var(--line);border-radius:999px;padding:1px 9px;white-space:nowrap}
+.stem{margin:0 0 10px;font-weight:500}
+.opt{display:flex;gap:10px;align-items:flex-start;padding:9px 11px;border:1px solid var(--line);border-radius:9px;margin:6px 0;cursor:pointer}
+.opt:hover{border-color:var(--accent)}
+.opt input{margin-top:4px;accent-color:var(--accent)}
+.opt.correct{background:var(--ok-soft);border-color:var(--ok)}
+.opt.wrong{background:var(--bad-soft);border-color:var(--bad)}
+.expl{display:none;margin-top:10px;padding:10px 12px;border-left:3px solid var(--accent);background:var(--accent-soft);border-radius:0 8px 8px 0;font-size:.95rem}
+.graded .expl{display:block}
+textarea{width:100%;min-height:150px;padding:10px;border:1px solid var(--line);border-radius:9px;background:var(--bg);color:var(--ink);font:inherit;resize:vertical}
+.model{display:none;margin-top:12px}
+.graded .model{display:block}
+.model h4{margin:10px 0 6px;font-size:.95rem}
+.model label{display:flex;gap:8px;align-items:flex-start;margin:5px 0;font-size:.95rem}
+.model input{margin-top:4px;accent-color:var(--ok)}
+.pts{font-size:.85rem;color:var(--muted)}
+.bar{position:fixed;left:0;right:0;bottom:0;background:var(--card);border-top:1px solid var(--line);padding-top:10px;padding-bottom:calc(10px + env(safe-area-inset-bottom,0px));padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));z-index:5}
+.bar .in{max-width:820px;margin:0 auto;display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+button{font:inherit;border:0;border-radius:9px;padding:9px 16px;cursor:pointer;background:var(--accent);color:#fff;font-weight:600}
+button.ghost{background:transparent;color:var(--ink);border:1px solid var(--line)}
+.status{flex:1;min-width:150px;font-size:.9rem;color:var(--muted)}
+.timer{font-variant-numeric:tabular-nums;font-weight:700}
+.score{background:var(--card);border:2px solid var(--accent);border-radius:12px;padding:16px 18px;margin:18px 0;display:none}
+.score.show{display:block}
+.score .big{font-size:1.6rem;font-weight:800}
+.unanswered{border-color:var(--bad)}
+button:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+select{font:inherit;padding:7px;border-radius:9px;border:1px solid var(--line);background:var(--bg);color:var(--ink)}
+.case{background:var(--bg);border:1px dashed var(--line);border-radius:9px;padding:10px 12px;margin:8px 0 12px;font-size:.95rem;white-space:pre-line}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Qualitative Methods — Mock Exam</h1>
+  <p class="sub">Multiple choice + open questions · Creswell &amp; Poth, Morris, Spradley, Hennink, Barton, Jewitt &amp; Oyama, Smithson, Boeije, Gioia et al., lectures and guest lecture</p>
+  <div class="intro">
+    <strong>How it works</strong>
+    <ul>
+      <li><strong>Part A:</strong> multiple choice, one answer each. Options are shuffled every time you open the page.</li>
+      <li><strong>Part B:</strong> open questions. Write your answer first, then after submitting compare it with the model answer and tick the points you covered.</li>
+      <li>Press <strong>Submit</strong> to see your score and an explanation for every question. Your answers are saved in this browser until you press Reset.</li>
+      <li>The timer is optional. Pick a length at the bottom and press Start timer.</li>
+    </ul>
+  </div>
+  <div class="score" id="score"></div>
+  <h2>Part A — Multiple choice</h2>
+  <div id="mc"></div>
+  <h2>Part B — Open questions</h2>
+  <p class="sub">Answer in full sentences, apply concepts to the case and use course terminology.</p>
+  <div id="open"></div>
+</div>
+<div class="bar"><div class="in">
+  <span class="status" id="status"></span>
+  <span class="timer" id="timer"></span>
+  <select id="timerMin" aria-label="Timer length"><option value="60">60 min</option><option value="90">90 min</option><option value="120" selected>120 min</option><option value="180">180 min</option></select>
+  <button class="ghost" id="timerBtn">Start timer</button>
+  <button class="ghost" id="resetBtn">Reset</button>
+  <button id="submitBtn">Submit</button>
+</div></div>
+
+<script>
+const MC=[
+{t:"Philosophical assumptions",q:"A qualitative report presents several migrants’ accounts of the same municipal office side by side, each with different quotes, without deciding which one is “true”. Which philosophical assumption is most visible here?",o:["Ontology: there are multiple realities","Epistemology: knowledge comes from expert sources","Axiology: research should be value-free","Methodology: deductive theory testing"],a:0,e:"Ontology concerns the nature of reality. Qualitative researchers assume multiple realities, which shows up as several perspectives and varied quotes presented side by side."},
+{t:"Philosophical assumptions",q:"A researcher who first treated race as a stable, objective variable realises that her own Whiteness shaped both her participants and her findings, and states this explicitly. This is mainly an expression of:",o:["Axiology (positionality)","Ontology","Methodology","Epistemology"],a:0,e:"Axiology is about the role of values. Qualitative research is value-laden, and researchers state their positionality (social position, experience, beliefs)."},
+{t:"Philosophical assumptions",q:"Spending long periods in the field, getting close to participants and quoting their first-hand experiences reflects which assumption?",o:["Epistemology","Ontology","Axiology","Rhetoric"],a:0,e:"Epistemology asks what counts as knowledge and how claims are justified. The qualitative answer is subjective, first-hand experience, so the researcher gets close to participants."},
+{t:"Characteristics of qualitative research",q:"Which of the following is NOT one of Creswell & Poth’s characteristics of qualitative research?",o:["A random sample to make findings statistically generalisable","Emergent design","Reflexivity","Natural setting"],a:0,e:"The nine characteristics include natural setting, researcher as key instrument, multiple methods, inductive and deductive reasoning, multiple perspectives, context, emergent design, reflexivity and a complex account. Random sampling for statistical generalisation is not one of them."},
+{t:"Characteristics of qualitative research",q:"Adapting data collection to emerging insights (flexible methods) typically:",o:["Raises internal validity but lowers reliability","Raises reliability but lowers internal validity","Raises both reliability and validity","Lowers both reliability and validity"],a:0,e:"Following what is actually found raises internal validity, but the study becomes harder to replicate exactly, so reliability is lower."},
+{t:"Interpretive frameworks",q:"A researcher says: “I don’t commit to a view of reality; the research question decides whether I use interviews, a survey or both.” Which framework?",o:["Pragmatism","Postpositivism","Social constructivism","Postmodernism"],a:0,e:"Pragmatism puts practical outcomes (“what works”) before philosophical commitments. The problem and question drive the choice of qualitative or mixed methods."},
+{t:"Interpretive frameworks",q:"Why is postpositivism called “post”-positivism?",o:["It treats cause and effect as probabilities rather than certainties","It rejects the existence of a single reality","It requires participants to validate findings","It comes after postmodernism historically"],a:0,e:"Postpositivism is cause-and-effect oriented but treats cause and effect as probabilities. It still assumes a single reality that may never be grasped perfectly."},
+{t:"Interpretive frameworks",q:"What distinguishes social constructivism from postmodernism in the course material?",o:["Constructivism is “weak”: multiple realities in the social world but one natural world; postmodernism is “strong”: multiple realities in both","Constructivism assumes one reality; postmodernism assumes many","Postmodernism is mostly inductive; constructivism says “anything goes” in methods","Constructivism focuses on power and language; postmodernism on face-to-face interaction"],a:0,e:"Constructivism locates knowledge construction in human interaction (weak constructivism). Postmodernism locates it in power structures and language, and extends multiple realities to the natural world too (strong)."},
+{t:"Interpretive frameworks",q:"A study of public safety in a Rotterdam neighbourhood analyses how media portrayals produce labels such as “troubled neighbourhood” and deconstructs binaries like safe/unsafe. Which framework fits best?",o:["Postmodernism","Postpositivism","Pragmatism","Social constructivism"],a:0,e:"Postmodern perspectives treat such labels as discursive constructions reflecting power and stereotypes, using discourse and media analysis to deconstruct binaries."},
+{t:"Interpretive frameworks",q:"Which framework treats race as a fluid social construct embedded in structures and uses counternarratives to challenge White privilege?",o:["Critical race theory","Queer theory","Postpositivism","Pragmatism"],a:0,e:"Critical race theory foregrounds systemic racism and uses counternarratives."},
+{t:"Five approaches",q:"A study interviews 12 people who lost a parent, highlights significant statements, writes textural and structural descriptions and ends with a composite description. Which approach?",o:["Phenomenology","Narrative research","Grounded theory","Case study"],a:0,e:"Horizontalisation, textural (what) and structural (how) descriptions and a composite essence are the signature steps of phenomenology."},
+{t:"Five approaches",q:"A researcher collects a single teacher’s stories, identifies time, place, plot and scene, and rewrites them chronologically with a beginning, middle and end. This step is called:",o:["Restorying","Horizontalisation","Bracketing","Axial coding"],a:0,e:"Restorying is the signature step of narrative research, often guided by Clandinin & Connelly’s three-dimensional space (interaction, continuity, situation)."},
+{t:"Five approaches",q:"Bracketing (epoché) means that the researcher:",o:["Sets aside their own experiences to focus on participants’ accounts","Selects participants who help build an emerging theory","Draws boundaries around a case in time and place","Combines the group’s own view with a scientific interpretation"],a:0,e:"Bracketing is central in phenomenology, especially Moustakas’s transcendental (descriptive) phenomenology."},
+{t:"Five approaches",q:"In ethnography, the “etic” perspective refers to:",o:["The researcher’s scientific interpretation","The group’s own perspective, often in quotes","The gatekeeper’s account of the group","A third-person realist tale"],a:0,e:"Emic is the insider’s view, etic the researcher’s scientific interpretation. Ethnography combines both."},
+{t:"Five approaches",q:"Which pairing of approach and disciplinary origin is correct?",o:["Grounded theory – sociology","Phenomenology – anthropology","Ethnography – philosophy","Narrative research – evaluation research"],a:0,e:"Grounded theory was developed in sociology by Glaser & Strauss (1967). Phenomenology comes from philosophy/psychology and ethnography from anthropology/sociology."},
+{t:"Five approaches",q:"A researcher studies one city’s platform-work regulation, clearly bounded in time and place, and chooses it to understand the broader issue of platform governance. This is a:",o:["Single instrumental case study","Intrinsic case study","Collective case study","Realist ethnography"],a:0,e:"An instrumental case is chosen to illustrate an issue. An intrinsic case is studied for its own uniqueness; a collective case uses several cases."},
+{t:"Five approaches",q:"Which ethnographic variation is advocacy-oriented and aims to empower marginalised groups?",o:["Critical ethnography","Realist ethnography","Confessional ethnography","Digital ethnography"],a:0,e:"Realist ethnography (Van Maanen) is a dispassionate third-person account. Critical ethnography challenges power and domination."},
+{t:"Five approaches",q:"Grounded theory differs from thematic analysis mainly because grounded theory:",o:["Aims to develop an explanatory theory of a process, with mechanisms","Only uses deductive codes","Does not involve coding","Is limited to one or two participants"],a:0,e:"Thematic analysis finds and interprets themes. Grounded theory goes further and builds an explanatory theory, and may use thematic analysis as a tool."},
+{t:"Research design",q:"“Methodological congruence” (Morse & Richards) means that:",o:["Problem statement, purpose, research question and subquestions all point the same way","Several researchers code the same data identically","Multiple data sources confirm the same theme","Findings are checked with participants"],a:0,e:"Methodological congruence is the tight fit between purposes, questions and methods in an interactive, logical design."},
+{t:"Problem and purpose statements",q:"Which of these is NOT one of the five elements of the deficiencies model for an introduction?",o:["A hypothesis to be tested","The research problem","Deficiencies in the evidence","Importance for audiences"],a:0,e:"The five elements are topic, research problem, evidence from literature, deficiencies in the evidence, and importance for audiences. Qualitative studies don’t start from hypotheses."},
+{t:"Problem and purpose statements",q:"A purpose statement contains the words “culture-sharing group”, “cultural behaviour and language” and “cultural portrait”. These encoding words signal:",o:["Ethnography","Phenomenology","Case study","Narrative research"],a:0,e:"These are the encoding words for ethnography. Phenomenology uses essence/meaning; case study uses bounded/case; narrative uses stories/epiphanies."},
+{t:"Research questions",q:"Creswell & Poth advise starting qualitative research questions with “what” or “how” rather than “why” because:",o:["“Why” implies directional cause and effect","“Why” questions are too descriptive","“Why” is reserved for subquestions","Ethics boards don’t accept “why” questions"],a:0,e:"The book says “why” implies directional causality. Note: the lecture still lists “why” as the explanatory type, so know both positions."},
+{t:"Research questions",q:"Which central question fits a grounded theory study of police officers and suspects in street violence?",o:["What explains the interaction processes between officers and suspects?","What does it mean for officers to interact with violent suspects?","What are the stories of officers who often meet such suspects?","How can interaction in The Hague be understood?"],a:0,e:"Grounded theory asks what processes explain a phenomenon. The others are phenomenological, narrative and case-study forms."},
+{t:"Sampling",q:"A study compares people who escaped homelessness with people who stayed homeless for years. Which sampling strategy is this?",o:["Extreme or deviant case sampling","Typical case sampling","Snowball sampling","Homogeneous sampling"],a:0,e:"Extreme/deviant case sampling learns from highly unusual cases."},
+{t:"Sampling",q:"Which sampling strategy is typical of phenomenology?",o:["Criterion sampling: everyone must have lived the phenomenon","Theoretical sampling","A “big net” within an intact group","Politically important cases"],a:0,e:"Phenomenology requires that all participants experienced the phenomenon, so criterion sampling is typical."},
+{t:"Sampling",q:"In grounded theory, theoretical sampling usually proceeds by:",o:["Starting homogeneous to develop categories, then adding heterogeneous cases to test conditions","Starting with a random sample and narrowing to extreme cases","Selecting one well-defined culture-sharing group","Selecting no more than four or five bounded cases"],a:0,e:"You start homogeneous to develop open and axial categories, then add heterogeneous participants to test the contextual and intervening conditions. You continue until saturation."},
+{t:"Sampling",q:"What is the main drawback of convenience sampling?",o:["It costs information and credibility","It is too expensive","It requires a gatekeeper","It only works with large samples"],a:0,e:"Convenience saves time, money and effort, but at the expense of information and credibility."},
+{t:"Ethics",q:"The AMRL cycle treats ethics as ongoing. What do the letters stand for?",o:["Anticipate, Mitigate, Respond, Learn","Assess, Monitor, Report, Limit","Approve, Manage, Review, Log","Anonymise, Minimise, Reciprocate, Listen"],a:0,e:"Anticipate issues while planning, Mitigate them (e.g. consent), Respond to issues in the field, Learn for future research."},
+{t:"Ethics",q:"Fair and equitable treatment in sampling, recruitment and the distribution of benefits falls under which core ethical principle?",o:["Justice","Respect for persons","Concern for welfare","Reciprocity"],a:0,e:"The three principles are respect for persons (privacy, consent, withdrawal), concern for welfare (minimise harm) and justice (fairness, inclusivity)."},
+{t:"Ethics",q:"When is verbal consent rather than a written form appropriate according to the course?",o:["When writing is hard, anonymity is needed, or a form would make a sensitive conversation too formal","Whenever participants are minors","Never; written consent is always required","Only in focus groups"],a:0,e:"Verbal consent fits those situations. For minors and vulnerable people, consent by proxy (e.g. parents) is used."},
+{t:"Interviewing",q:"“Should students have more classes about history and culture?” This interview question is problematic because it is:",o:["Double-barrelled","Leading","A grand tour question","A contrast question"],a:0,e:"A double-barrelled question holds two topics but allows one answer."},
+{t:"Interviewing",q:"According to Morris, what is the most common student mistake when moving from research question to interview guide?",o:["Converting the research question mechanically instead of translating abstract concepts into everyday indicators","Using too many topics","Starting with an easy question","Recording the interview"],a:0,e:"Research questions are in theoretical language, interview questions in everyday language. Concepts like “sense of belonging” must be translated into concrete indicators."},
+{t:"Interviewing",q:"An interviewee says living in a caravan was “awful” and the interviewer moves on to the next topic. What went wrong?",o:["The interviewer failed to probe","The interviewer used a leading question","The interviewer broke confidentiality","The interviewer asked a double-barrelled question"],a:0,e:"Morris’s example: the interviewer should have probed, e.g. “In what ways was it awful?”"},
+{t:"Interviewing",q:"What is the recommended order of question stages in an interview?",o:["Introductory → transition → key → closing","Key → introductory → transition → closing","Transition → key → introductory → closing","Introductory → key → transition → closing"],a:0,e:"Start gently to build rapport, put challenging and important questions mid-interview, and end with easy questions that give closure."},
+{t:"Ethnographic interviewing (Spradley)",q:"Spradley’s advice “Don’t ask for meaning, ask for use” means the interviewer should:",o:["Restate the informant’s term and ask how they or others would use it","Ask “what do you mean?” whenever a term is unclear","Translate the informant’s terms into academic concepts","Avoid native-language terms altogether"],a:0,e:"“Why” and “what do you mean” questions carry a hidden judgement and push informants to translate for you. Asking about use keeps them in their own language."},
+{t:"Ethnographic interviewing (Spradley)",q:"“What is the difference between taking orders and serving orders?” is an example of a:",o:["Contrast question","Grand tour question","Structural question","Native-language question"],a:0,e:"Contrast questions find the dimensions of meaning informants use to tell things apart."},
+{t:"Ethnographic interviewing (Spradley)",q:"“Are there different kinds of flops?” is which type of question?",o:["Structural (cover term) question","Mini-tour question","Contrast question","Experience question"],a:0,e:"Structural questions elicit domains: a cover term (kinds of flops) and its included terms."},
+{t:"Ethnographic interviewing (Spradley)",q:"What is the typical order of the stages of rapport according to Spradley?",o:["Apprehension → exploration → cooperation → participation","Exploration → apprehension → participation → cooperation","Cooperation → apprehension → exploration → participation","Apprehension → cooperation → exploration → participation"],a:0,e:"In the participation stage the informant accepts the role of teacher and starts bringing in information."},
+{t:"Observation",q:"Compared with unstructured observation, structured observation (with predefined indicators) has:",o:["Higher reliability but a risk to validity","Higher validity but lower reliability","Higher ecological validity","No need for indicators"],a:0,e:"Standard indicators make observers record similar things (reliability), but fixed categories may miss unexpected behaviour (validity)."},
+{t:"Observation",q:"A field note reads: “A young man in shabby clothes enters.” What is the problem?",o:["“Shabby” is an interpretation; describe concrete details instead","It lacks the date and time only","It should be written in the field diary","It describes too much detail"],a:0,e:"Be specific, not interpretive: soiled jeans, stained t-shirt, untied laces. Interpretations, hunches and feelings belong in the field diary or reflective notes."},
+{t:"Observation",q:"The key benefit of observation over interviews, as shown by the example of patients who said they took their tablets but threw them away, is that observation:",o:["Shows what people do rather than what they say, avoiding post hoc rationalisation","Is quicker than interviewing","Requires no rapport","Is easier to generalise statistically"],a:0,e:"Talking about behaviour invites rationalisation. Observation shows actual behaviour and unspoken norms."},
+{t:"Observation",q:"The idea that a non-participant observer is a “fly on the wall” is largely a myth because of:",o:["The Hawthorne effect","Going native","Theoretical sensitivity","Saturation"],a:0,e:"The researcher’s presence influences the setting (Hawthorne effect)."},
+{t:"Validation and reliability",q:"Which validation strategy do Lincoln and Guba call the most critical technique for establishing credibility?",o:["Member checking","External audit","Peer debriefing","Referential adequacy"],a:0,e:"Member checking takes preliminary descriptions or themes (not raw transcripts) back to participants."},
+{t:"Validation and reliability",q:"In Lincoln and Guba’s trustworthiness criteria, transferability corresponds to ___ and is mainly supported by ___.",o:["External validity; thick description","Reliability; an audit","Internal validity; triangulation","Objectivity; member checking"],a:0,e:"Credibility = internal validity, transferability = external validity, dependability = reliability, confirmability = objectivity. Thick description lets readers judge transferability."},
+{t:"Validation and reliability",q:"Peer debriefing belongs to which of Creswell & Poth’s three lenses?",o:["Reader’s/reviewer’s lens","Researcher’s lens","Participant’s lens","None; it is a reliability strategy"],a:0,e:"Reader’s/reviewer’s lens: external audit, thick description, peer review. Researcher’s lens: triangulation, negative case analysis, reflexivity. Participant’s lens: member checking, prolonged engagement, collaboration."},
+{t:"Validation and reliability",q:"What percentage of intercoder agreement do Creswell & Poth suggest aiming for?",o:["80–90%","50–60%","100%","At least 95%"],a:0,e:"C&P aim for 80–90%. Gioia et al. by contrast see independent intercoder percentages as unnecessary."},
+{t:"Validation and reliability",q:"“Referential adequacy” as a validation strategy means:",o:["Keeping part of the data back for later analysis","Referring to many sources in the literature","Asking participants to check transcripts","Using a standardised codebook"],a:0,e:"It is on the lecture’s list of validity strategies."},
+{t:"Coding",q:"In axial coding, reasoning runs mainly:",o:["From codes to data","From data to codes","From theory to hypotheses","From participants to the researcher"],a:0,e:"Open coding runs from data to codes. Axial coding relates categories and checks them against the data."},
+{t:"Coding",q:"A nurse says he was “falling short” in writing reports, and the researcher uses exactly that phrase as the code. This is:",o:["An in vivo code","A sensitising concept","A theoretical code","A deductive code"],a:0,e:"In vivo codes use participants’ own words. Theoretical codes, e.g. “languaged society”, come from social theory."},
+{t:"Coding",q:"Why does Charmaz recommend gerunds such as “choosing a career” instead of “career choice”?",o:["They capture action and process","They are shorter","They are easier to count","They match the interview questions"],a:0,e:"Gerunds carry action and make you ask what process is at issue and how it changes."},
+{t:"Coding",q:"Creswell & Poth’s “lean coding” recommends:",o:["Starting with 5–6 broad categories, expanding to at most 25–30, then winnowing to 5–6 themes","Starting with 100–200 detailed codes","Coding only with predefined codes","Never merging codes"],a:0,e:"Lean coding contrasts with Boeije’s larger code lists (50 in small studies, 100–200 in large ones)."},
+{t:"Coding",q:"Strauss & Corbin’s coding paradigm organises a category through:",o:["Context, conditions, interactions/strategies and consequences","First-order, second-order and aggregate dimensions","Ideational, textual and intertextual levels","Description, analysis and interpretation"],a:0,e:"Boeije’s example is hospitalisation of nursing-home residents, with each of these elements filled in."},
+{t:"Coding",q:"In Gioia et al.’s methodology, first-order analysis stays close to ___, while second-order analysis uses ___.",o:["informants’ own terms; researcher-centred concepts and themes","theory; informants’ quotes","deductive codes; in vivo codes","aggregate dimensions; open codes"],a:0,e:"First-order concepts → second-order themes → aggregate dimensions, displayed in the data structure (“no data structure; know nothing”)."},
+{t:"Coding",q:"What is a property of the core category in selective coding (Strauss)?",o:["It is central, appears frequently and makes the pieces of the puzzle fit","It contains only one fragment","It is taken directly from the literature","It is always an in vivo code"],a:0,e:"The core category is a construction of the researcher, not something that emerges by itself."},
+{t:"Documents",q:"Which is NOT part of Bryman’s definition of a document?",o:["It was produced specifically for the research","It can be read or interpreted","It is preserved","It is available for analysis"],a:0,e:"Documents were not produced for research. This is also why they are non-reactive."},
+{t:"Documents",q:"A royal address introduces the term “participation society”, which then shapes policy and public debate. Which perspective on documents does this illustrate?",o:["Documents as agents (document performance)","Classic content analysis at the ideational level","External criticism of sources","Documents as a mirror of reality"],a:0,e:"Instead of what a document says, you ask what it does: documents act in the social world, can backfire and set off chains of further documents."},
+{t:"Documents",q:"Analysing how policy documents refer to each other, and which recurring frames or metaphors travel between them, works at which level?",o:["Intertextual","Ideational","Textual","Microanalytic"],a:0,e:"Ideational = what is said; textual = structure of the text; intertextual = how documents refer to each other."},
+{t:"Visual methods",q:"In Barthes’s terms, a black cat that suggests superstition and bad luck works at the level of:",o:["Connotation","Denotation","Signifier only","Modality"],a:0,e:"Denotation is what/who is depicted (a black cat). Connotation is the ideas and values expressed."},
+{t:"Visual methods",q:"In Kress & van Leeuwen’s interactive metafunction, a person in an image looking directly at the viewer creates:",o:["A demand","An offer","A classification structure","Detachment"],a:0,e:"A direct gaze demands a response; an averted gaze is an offer, an object to observe."},
+{t:"Visual methods",q:"According to Jewitt & Oyama, in Western compositions elements on the left are read as ___ and on the right as ___.",o:["given; new","ideal; real","new; given","real; ideal"],a:0,e:"Left = given, right = new; top = ideal, bottom = real. This is culturally specific: Japanese adverts reverse left and right."},
+{t:"Elicitation (Barton)",q:"Asking participants what a fictional character in an ambiguous scenario thinks or should do is a:",o:["Projective device","Sorting task","Freelisting task","Think-aloud task"],a:0,e:"Placing a sensitive topic on a fictional character lowers defensiveness."},
+{t:"Elicitation (Barton)",q:"A key advantage of letting participants sort images into piles of their own choosing is that it:",o:["Lets participants construct insider categories instead of imposing the researcher’s framework","Removes all power imbalances","Produces statistically comparable data","Replaces the need for interviews"],a:0,e:"Elicitation doesn’t remove power imbalances, because the researcher still controls interpretation."},
+{t:"Focus groups (Smithson)",q:"According to Smithson, a lack of open disagreement in a focus group should be interpreted as:",o:["Not necessarily consensus; groups tend to reproduce socially acceptable views","Proof of consensus","A sign the moderator was neutral","A reason to discard the data"],a:0,e:"The group is the unit of analysis, talk is a socially organised performance, and silences can signal unspoken boundaries."},
+{t:"Focus groups (Smithson)",q:"For which topic would an individual interview be better than a focus group?",o:["Personal financial problems among employees of one company","General opinions about a new city park","Students’ views on campus facilities","Reactions to a TV advertisement"],a:0,e:"Highly sensitive or private topics, and settings where people speak before colleagues or managers, suit individual interviews better."},
+{t:"Guest lecture: visual research",q:"In the visual researcher’s Nile project, the contrast between Egypt and Ethiopia was described as:",o:["Physical scarcity in Egyptian cities versus economic scarcity in Ethiopia","Economic scarcity in Egypt versus physical scarcity in Ethiopia","Pollution in Ethiopia versus flooding in Egypt","No scarcity in either country"],a:0,e:"In Ethiopia water exists but infrastructure is missing (economic scarcity); Egyptian cities face physical scarcity."},
+{t:"Writing up",q:"A report in which the fieldworker openly describes their own experiences and mistakes is, in Van Maanen’s terms, a:",o:["Confessional tale","Realist tale","Impressionistic tale","Formalist tale"],a:0,e:"A realist tale is an impersonal third-person account. A confessional tale foregrounds the fieldworker’s own experience."},
+{t:"Writing up",q:"Which approaches have a fairly prescribed overall report structure?",o:["Grounded theory, phenomenology and case study","Narrative and ethnography","All five equally","None of them"],a:0,e:"Narrative and ethnography are flexible and experimental. In grounded theory and phenomenology, report sections mirror the analytic steps."},
+{t:"Writing up",q:"For case studies, Merriam suggests a balance between description and analysis of roughly:",o:["60/40 or 70/30 in favour of description","50/50","30/70 in favour of analysis","90/10 in favour of analysis"],a:0,e:"Case study reports funnel the description and balance description with analysis."}
+];
+
+const OPEN=[
+{t:"Choosing an approach",pts:10,q:"Read the case and answer both parts.",c:"A research team wants to study how young Turkish-Dutch adults in Rotterdam experience their sense of belonging in the Netherlands after public debates on integration.\n\n(a) Choose the most suitable qualitative approach and justify the choice using at least three defining features of that approach.\n(b) Explain why one other approach would fit less well.",m:["Names one approach clearly. Phenomenology fits well: one phenomenon (sense of belonging), a shared lived experience, and a composite essence. Narrative (individual stories over time) or grounded theory (if the focus is a process of belonging) can also earn credit if well argued.","Uses at least three defining features correctly, e.g. criterion sampling of 5–25 people who lived the experience, in-depth interviews, bracketing, horizontalisation, textural and structural descriptions.","Links the approach to the research question and unit of analysis (several individuals who share an experience).","Formulates a fitting central question, e.g. “What is the essence of the meaning young Turkish-Dutch adults give to belonging?”","Explains why another approach fits less well, e.g. ethnography needs an intact culture-sharing group and prolonged participant observation, and its outcome is a cultural portrait, not the essence of an individual experience.","Uses course terms precisely (approach, unit of analysis, outcome)."]},
+{t:"Philosophy and frameworks",pts:8,q:"Answer both parts.",c:"(a) Explain the four philosophical assumptions (ontology, epistemology, axiology, methodology) and how each shows up in a qualitative study of how bureaucratic contacts affect migrants’ integration.\n(b) How would a postpositivist and a social constructivist frame this same study differently?",m:["Ontology: multiple realities; each migrant’s account of the office is its own reality, shown through varied quotes.","Epistemology: subjective, first-hand knowledge; the researcher gets close, reconstructs trajectories through in-depth interviews.","Axiology: research is value-laden; the researcher states positionality and participants’ values.","Methodology: inductive, emergent design in context; questions revised in the field.","Postpositivist: single reality, cause and effect as probabilities, detached researcher, controls bias, measurable variables, deductive testing.","Constructivist: meanings co-constructed in interaction, open questions, natural settings, inductive, researcher reflexive.","Explicitly contrasts the two frameworks on ontology/epistemology rather than only listing methods."]},
+{t:"Sampling and ethics",pts:8,q:"Answer all parts.",c:"A study examines the subjective safety perceptions of elderly women living alone in a Rotterdam neighbourhood.\n\n(a) Name and justify a sampling strategy and a sample size.\n(b) Describe concretely how you would recruit participants.\n(c) Name two ethical issues and how you would handle them.",m:["Names a purposeful strategy, e.g. criterion sampling (lives alone, aged 70+, in that neighbourhood), possibly combined with maximum variation or snowball.","Justifies the strategy from the approach and question (purposeful, not random; information-rich cases).","Gives a justified size linked to the approach (e.g. phenomenology about 5–25) and mentions saturation or the questions “am I still hearing new things?”","Describes concrete recruitment: gatekeepers such as community centres, residents’ associations or GP practices; an invitation letter; timing.","Ethics 1: informed consent and capacity to consent in a vulnerable group; information letter, voluntariness, right to withdraw.","Ethics 2: e.g. trauma-sensitive approach (fear, past victimisation), anonymisation/pseudonyms, secure storage, providing support or referrals.","Refers to principles (respect for persons, concern for welfare, justice) or the AMRL cycle."]},
+{t:"Interview critique",pts:8,q:"Identify at least four problems in this interview excerpt, name them with course terminology, and rewrite two of the questions.",c:"Interviewer: “So, you’re an employee at the municipality. Isn’t all that bureaucracy really frustrating?”\nRespondent: “Well, sometimes, yes.”\nInterviewer: “Why do you let the rules affect your motivation and your work pressure?”\nRespondent: “I don’t know… it’s complicated.”\nInterviewer: “OK. Next question: how many hours do you work per week?”",m:["Leading question (“Isn’t all that bureaucracy really frustrating?”) presumes an answer and steers the respondent.","Closed question that allows a yes/no answer.","Double-barrelled question (motivation AND work pressure in one question).","“Why” question that seeks attributions and sounds judgemental; prefer “how” and “what” (Spradley: ask for use, not meaning).","Failure to probe after “it’s complicated” or “sometimes”; “I don’t know” and silence are data that deserve follow-up.","Abrupt transition and a factual question that could be obtained elsewhere or in the drop-off part.","Starts with a sensitive/key question instead of an introductory one, which harms rapport.","Rewrites are open, neutral, single-topic and in everyday language, e.g. “Could you walk me through a typical working day and the rules you deal with?” and “Can you give an example of a moment when a procedure affected how you felt about your work?”"]},
+{t:"Coding",pts:10,q:"Answer all parts.",c:"Fragments from interviews with students about choosing their study:\n1. “My father was always my role model, he studied law too.”\n2. “My parents kind of pushed me towards a ‘serious’ study.”\n3. “I talked a lot with my older sister about my options.”\n4. “Most of my friends went to Erasmus, so I wanted to be there too.”\n5. “I picked it because the job prospects are good.”\n\n(a) Give an open code for each fragment.\n(b) Group the codes into second-order themes (axial) and an aggregate dimension (selective).\n(c) Explain how open, axial and selective coding differ and what a Gioia data structure shows.",m:["Open codes are short phrases (about 3–5 words) close to the data, e.g. “father as role model”, “parents pushing serious study”, “discussing options with sister”, “following friends”, “job prospects”. In vivo codes allowed.","Axial themes are sensible, e.g. “influence by family” (1–3), “influence by friends” (4), “career considerations” (5).","Aggregate dimension, e.g. “social factors in study choice” (and possibly “instrumental factors”).","Open coding: breaking data down, comparing, labelling; runs from data to codes; ends at saturation (no new codes).","Axial coding: relating, merging, splitting codes into categories, main vs sub-codes; runs from codes to data.","Selective coding: core category and connections that answer the research question; conceptual model.","Data structure: columns first-order concepts → second-order themes → aggregate dimensions; makes the path from raw data to concepts transparent (rigour; “how do I know that you know?”).","Mentions memos, constant comparison or the audit trail."]},
+{t:"Validity and reliability",pts:8,q:"Answer both parts.",c:"A researcher plans a case study of how a municipality communicates with bicultural residents, using interviews with communication advisors and observation of project meetings.\n\n(a) Propose two validation strategies from two different lenses (researcher, participant, reader/reviewer), and explain concretely how you would carry them out.\n(b) Propose one strategy to strengthen reliability and explain why it works.",m:["Strategy 1 is named, correctly assigned to its lens and applied concretely, e.g. triangulation (researcher’s lens) of interviews, observation and municipal documents.","Strategy 2 from a different lens, e.g. member checking (participant’s lens): return preliminary themes, not raw transcripts, to advisors, or prolonged engagement in the project group.","Or reader’s lens: thick description so readers can judge transferability; peer debriefing; external audit with an audit trail.","Explains what each strategy protects against (e.g. researcher bias, misinterpretation, going native).","Reliability strategy: e.g. intercoder agreement with a codebook (aim 80–90%), a case study protocol/database, detailed field notes, accurate transcription, audit trail.","Explains reliability as consistency/repeatability across researchers and procedures.","Notes that C&P recommend at least two strategies."]},
+{t:"Observation",pts:6,q:"Answer all parts.",c:"You want to study how students interact in the university library.\n\n(a) Compare a structured and an unstructured observation design for this question, including their effect on reliability and validity.\n(b) Which observer role would you choose, and why?\n(c) What is the difference between descriptive and reflective field notes?",m:["Structured: concept operationalised into indicators (group size, language, topics, items used), checklist; higher reliability, risk of missing unexpected behaviour (validity).","Unstructured: no fixed categories, record as it unfolds; captures nuance (ecological validity) but lower reliability and harder to find focus.","Chooses and justifies an observer role (complete participant, participant as observer, nonparticipant, complete observer); mentions the Hawthorne effect or access.","Descriptive notes: factual, chronological, concrete details without interpretation.","Reflective notes: hunches, feelings, first interpretations, kept separate (field diary).","Mentions ethical aspects, e.g. permission in an institutional setting or not identifying individuals."]}
+];
+
+const KEY="qm-mock-v1";
+let state={mc:{},open:{},checks:{},graded:false,timerEnd:null};
+try{const s=JSON.parse(localStorage.getItem(KEY));if(s)state=Object.assign(state,s);}catch(e){}
+function save(){try{localStorage.setItem(KEY,JSON.stringify(state));}catch(e){}}
+function shuffle(a){a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
+const esc=s=>s.replace(/&/g,"&amp;").replace(/</g,"&lt;");
+
+const mcEl=document.getElementById("mc");
+MC.forEach((it,i)=>{
+  const d=document.createElement("div");d.className="q";d.id="mc"+i;
+  const order=shuffle(it.o.map((_,k)=>k));
+  d.innerHTML=`<div class="qhead"><span class="qnum">A${i+1}</span><span class="tag">${it.t}</span></div><p class="stem">${esc(it.q)}</p>`+
+    order.map(k=>`<label class="opt" data-k="${k}"><input type="radio" name="mc${i}" value="${k}" ${state.mc[i]===k?"checked":""}><span>${esc(it.o[k])}</span></label>`).join("")+
+    `<div class="expl"><strong>Answer:</strong> ${esc(it.o[it.a])}<br>${esc(it.e)}</div>`;
+  d.addEventListener("change",ev=>{state.mc[i]=+ev.target.value;d.classList.remove("unanswered");save();upd();});
+  mcEl.appendChild(d);
+});
+
+const opEl=document.getElementById("open");
+OPEN.forEach((it,i)=>{
+  const d=document.createElement("div");d.className="q";d.id="op"+i;
+  d.innerHTML=`<div class="qhead"><span class="qnum">B${i+1}</span><span class="tag">${it.t} · ${it.pts} pts</span></div><p class="stem">${esc(it.q)}</p><div class="case">${esc(it.c)}</div>
+  <textarea placeholder="Write your answer here…">${esc(state.open[i]||"")}</textarea>
+  <div class="model"><h4>Model answer — tick each point your answer covers</h4>${it.m.map((p,k)=>`<label><input type="checkbox" data-k="${k}" ${(state.checks[i]||[]).includes(k)?"checked":""}><span>${esc(p)}</span></label>`).join("")}<p class="pts" id="opscore${i}"></p></div>`;
+  d.querySelector("textarea").addEventListener("input",e=>{state.open[i]=e.target.value;save();upd();});
+  d.querySelectorAll(".model input").forEach(cb=>cb.addEventListener("change",()=>{
+    state.checks[i]=[...d.querySelectorAll(".model input:checked")].map(x=>+x.dataset.k);save();showScore();}));
+  opEl.appendChild(d);
+});
+
+function openPts(i){const it=OPEN[i];const n=(state.checks[i]||[]).length;return Math.min(it.pts,Math.round(n/it.m.length*it.pts*1.25*2)/2);}
+function upd(){
+  const a=Object.keys(state.mc).length,o=Object.values(state.open).filter(x=>x&&x.trim()).length;
+  document.getElementById("status").textContent=`MC answered: ${a}/${MC.length} · Open: ${o}/${OPEN.length}`;
+}
+function grade(){
+  state.graded=true;save();
+  document.body.classList.add("graded");
+  MC.forEach((it,i)=>{const d=document.getElementById("mc"+i);d.classList.add("graded");
+    d.querySelectorAll(".opt").forEach(l=>{const k=+l.dataset.k;l.classList.remove("correct","wrong");
+      if(k===it.a)l.classList.add("correct");else if(state.mc[i]===k)l.classList.add("wrong");});
+    if(state.mc[i]===undefined)d.classList.add("unanswered");});
+  OPEN.forEach((_,i)=>document.getElementById("op"+i).classList.add("graded"));
+  showScore();
+  document.getElementById("score").scrollIntoView({behavior:"smooth"});
+}
+function showScore(){
+  if(!state.graded)return;
+  const right=MC.filter((it,i)=>state.mc[i]===it.a).length;
+  let op=0,opMax=0;OPEN.forEach((it,i)=>{const p=openPts(i);op+=p;opMax+=it.pts;const el=document.getElementById("opscore"+i);if(el)el.textContent=`Self-assessed: ${p} / ${it.pts} points`;});
+  const pct=(right/MC.length+op/opMax)/2;
+  const byTopic={};MC.forEach((it,i)=>{byTopic[it.t]=byTopic[it.t]||[0,0];byTopic[it.t][1]++;if(state.mc[i]===it.a)byTopic[it.t][0]++;});
+  const weak=Object.entries(byTopic).filter(([,v])=>v[0]<v[1]).map(([k,v])=>`${k} (${v[0]}/${v[1]})`);
+  const s=document.getElementById("score");s.classList.add("show");
+  s.innerHTML=`<div class="big">Indicative grade: ${(1+pct*9).toFixed(1)} / 10</div>
+  <p>Multiple choice: <strong>${right}/${MC.length}</strong> (${Math.round(right/MC.length*100)}%) · Open questions (self-assessed): <strong>${op}/${opMax}</strong></p>
+  <p class="pts">Both parts are weighted equally here. The open-question score updates as you tick model-answer points below.</p>
+  ${weak.length?`<p><strong>Review these topics:</strong> ${weak.join(", ")}</p>`:"<p><strong>All multiple-choice topics correct.</strong></p>"}`;
+}
+let armSubmit=false,armReset=false;
+const sb=document.getElementById("submitBtn"),rb=document.getElementById("resetBtn"),st=document.getElementById("status");
+sb.onclick=()=>{
+  const missing=MC.length-Object.keys(state.mc).length;
+  if(missing&&!armSubmit){armSubmit=true;sb.textContent="Submit anyway";st.textContent=`${missing} multiple-choice question(s) unanswered. Press again to submit.`;return;}
+  armSubmit=false;sb.textContent="Submit";grade();upd();
+};
+rb.onclick=()=>{
+  if(!armReset){armReset=true;rb.textContent="Confirm reset";st.textContent="This clears all your answers. Press Confirm reset to continue.";setTimeout(()=>{armReset=false;rb.textContent="Reset";upd();},5000);return;}
+  try{localStorage.removeItem(KEY);}catch(e){}location.reload();
+};
+let tick=null;
+function runTimer(){clearInterval(tick);const el=document.getElementById("timer");
+  tick=setInterval(()=>{if(!state.timerEnd){el.textContent="";return;}const r=Math.max(0,state.timerEnd-Date.now());
+    const m=Math.floor(r/60000),s=Math.floor(r%60000/1000);el.textContent=`${m}:${String(s).padStart(2,"0")}`;
+    if(r===0){clearInterval(tick);state.timerEnd=null;save();if(!state.graded)grade();el.textContent="Time is up";}},500);}
+document.getElementById("timerBtn").onclick=()=>{
+  if(state.timerEnd){state.timerEnd=null;save();document.getElementById("timer").textContent="";document.getElementById("timerBtn").textContent="Start timer";return;}
+  const m=parseInt(document.getElementById("timerMin").value,10);
+  state.timerEnd=Date.now()+m*60000;save();document.getElementById("timerBtn").textContent="Stop timer";runTimer();
+};
+if(state.timerEnd){document.getElementById("timerBtn").textContent="Stop timer";runTimer();}
+upd();if(state.graded)grade();
+</script>
+
+</body>
+</html>
